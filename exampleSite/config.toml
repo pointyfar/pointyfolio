@@ -1,0 +1,48 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "PointyFar"
+theme = "pointyfolio"
+
+pygmentsUseClassic = false
+pygmentsCodeFences = true
+pygmentsCodeFencesGuessSyntax = true
+pygmentsUseClasses = true
+
+
+[params]
+  subtitle = "Adventures in Hugoland"
+  copyright = "Copyright © 2018"
+  author = "Pointy Far"
+  homeImage = "stock/mushroom.jpg"
+  errorImage = "stock/missing-mushroom.png"
+  
+  footerNotice = "Powered by Hugo. Themed by PointyFar"
+
+[[params.legal]]
+  legalurl = "#"
+  legaltext = "Privacy Policy"
+
+[[params.legal]]
+  legalurl = "#"
+  legaltext = "Terms of Use"
+  
+[[params.social]]
+  url = "http://www.twitter.com"
+  icon = "fab fa-twitter"
+
+[[params.social]]
+  url = "http://www.facebook.com"
+  icon = "fab fa-facebook"
+
+[[params.social]]
+  url = "http://www.instagram.com"
+  icon = "fab fa-instagram"
+
+[[params.social]]
+  url = "http://www.tumblr.com"
+  icon = "fab fa-tumblr"
+
+[[params.social]]
+  url = "http://www.github.com"
+  icon = "fab fa-github"
+

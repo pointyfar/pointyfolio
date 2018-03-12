@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+  <div class="mdl-typography--text-center pointy-title white-text">
+    <h2>{{ .Site.Title }}</h2>
+    <h4>{{ .Site.Params.subtitle }}</h4>
+    
+  </div>
+  
+  <div class="pointy-container">
+  <div class="grid"  data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
+  <div class="grid-sizer"></div>
+  
+  {{ $.Scratch.Set "postCount" ( len (where .Site.RegularPages "Section" "==" "post" ) ) }}
+  
+  {{ if ( gt .Site.Params.postsToShow 0 ) }}
+  {{ $.Scratch.Set "postCount" .Site.Paginate }}
+  {{ end }}
+  
+  {{ range first ( $.Scratch.Get "postCount" ) ( where .Site.RegularPages.ByPublishDate.Reverse ".Type" "post") }}
+
+  <div class="grid-item">
+    <div class="mdl-shadow--2dp pointy-cell">
+      {{ $.Scratch.Set "imgURL" "" }}
+      {{ $.Scratch.Set "imgAlt" "" }}
+      {{ $.Scratch.Set "hasImg" false }}
+
+
+      
+      {{ if isset .Params "image" }}
+      {{ $.Scratch.Set "hasImg" true }}
+      
+        {{ if eq ( printf "%T" .Params.image ) "string" }}
+          {{ $.Scratch.Set "imgURL" .Params.image }}
+          {{ $.Scratch.Set "imgAlt" .Params.image }}
+        {{ else if eq ( printf "%T" .Params.image ) "[]interface {}" }}
+          {{ range first 1 .Params.image }}
+            {{ $.Scratch.Set "imgURL" .src }}
+            {{ $.Scratch.Set "imgAlt" .title }}
+          {{ end }}
+        {{ else if eq ( printf "%T" .Params.image ) "[]string" }}
+          {{ range .Params.image }}
+            {{ $.Scratch.Set "imgURL" . }}
+            {{ $.Scratch.Set "imgAlt" . }}
+          {{ end }}
+        {{ end }}
+      {{ else if ( gt ( len (.Resources.ByType "image")) 0 ) }}
+        {{ $.Scratch.Set "hasImg" true }}
+        {{ range first 1 (.Resources.ByType "image")  }}
+          {{ $.Scratch.Set "imgURL" .RelPermalink }}
+          {{ $.Scratch.Set "imgAlt" .Name }}
+        {{ end }}
+      {{ end }}
+      
+      
+      
+      <div class="mdl-card__title {{if $.Scratch.Get "hasImg"}} photo-section{{end}}" 
+          {{if $.Scratch.Get "hasImg"}} style="background:url({{ $.Scratch.Get "imgURL" }}) no-repeat center; background-size: cover;" {{ end }} >    
+        <h4 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+      </div>
+        
+      {{ if .Content }}
+        {{ if .Truncated }}
+          <div class="mdl-card__supporting-text">
+            <p>{{ .Summary }}</p>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                href="{{ .RelPermalink }}">Read More...</a>
+          </div>
+        {{ else }}
+          <div class="mdl-card__supporting-text">
+            <p>{{ .Summary }}</p>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+              href="{{ .RelPermalink }}">Go to page</a>
+          </div>
+        {{ end }}
+      {{ end }}
+        
+    </div>
+  </div>
+  
+  {{ end }}
+  
+  <div class="grid-item">
+    <div class="mdl-shadow--2dp pointy-cell">
+      <div class="mdl-card__title" >    
+          <h4 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ "/post/" | relURL }}">View All Posts</a></h4>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  
+  
+{{ end }}

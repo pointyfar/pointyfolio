@@ -1,0 +1,25 @@
+{{ partial "header.html" . }}
+
+{{ block "base-top" . }}
+<div class="mdl-layout mdl-js-layout" style="background:url('{{ .Site.Params.homeImage | relURL }}') no-repeat center; background-size: cover; background-attachment:fixed;">
+{{ end }}
+        {{ partial "navbar.html" . }}
+
+        <main class="mdl-layout__content">
+          <div style="min-height:90vh;">
+
+      
+    {{ block "main" . }}
+    {{ end }}
+    
+    
+    
+    
+  </div>
+  <div>
+    {{ partial "footer" . }}
+  </div>
+</main>
+</body>
+
+</html>

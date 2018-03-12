@@ -1,0 +1,24 @@
+<div class="mdl-layout-spacer"></div>
+
+<footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">
+      {{with .Site.Params.copyright}}{{.}}{{end}}
+      {{.Site.Title}}</div>
+    <ul class="mdl-mini-footer__link-list">
+      {{ range .Site.Params.legal }}
+      <li><a href="{{.legalurl}}">{{.legaltext}}</a></li>
+      {{ end }}
+    </ul>
+    {{with .Site.Params.footerNotice}}
+      <div>{{.}}</div>
+    {{end}}
+  </div>
+  <div class="mdl-mini-footer__right-section">
+    {{ range .Site.Params.social }}
+    <div class="social-wrapper"><a class="social-button" href="{{.url}}"><i class="{{.icon}}"></i></a></div>
+    {{ end }}
+    &nbsp;
+  </div>
+</footer>  
+

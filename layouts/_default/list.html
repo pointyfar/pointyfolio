@@ -1,0 +1,26 @@
+{{ define "main" }}      
+      <div class="pointy-container">
+        <div class="section--center mdl-grid mdl-shadow--4dp">
+          {{ range (.Site.RegularPages.GroupByDate "2006").Reverse }}
+          <div class="mdl-cell mdl-cell--12-col">
+            <h4>{{ .Key }}</h4>
+            <ul class="mdl-list">
+              {{ range (where .Pages "Type" "post").Reverse }}
+              <li class="mdl-list__item mdl-list__item--two-line">
+                <span class="mdl-list__item-primary-content">
+                  <span>
+                    <a class="mdl-color-text--grey-700" href="{{.Permalink}}">{{.Title}}</a>
+                  </span>
+                  <span class="mdl-list__item-sub-title">
+                    {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
+                    {{ with .PublishDate }} &middot; <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
+                  </span>
+                </span>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+{{ end }}

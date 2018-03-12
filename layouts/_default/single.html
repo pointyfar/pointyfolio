@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+{{ $PageTitle := .Title }}
+{{ $PageContext := . }}
+
+{{ $.Scratch.Set "imgList" (slice ) }}
+{{ $.Scratch.Set "imgNames" (slice ) }}
+
+{{ if gt ( len (.Resources.ByType "image")) 0  | or (isset .Params "image") }}
+  {{ if gt ( len (.Resources.ByType "image")) 0 }}
+    {{ range (.Resources.ByType "image")  }}
+      {{ $.Scratch.Add "imgList" .RelPermalink }}
+      {{ $.Scratch.Add "imgNames" .Name }}
+    {{ end }}
+  {{ end }}
+  {{ if isset .Params "image" }}
+    {{ if eq ( printf "%T" .Params.image ) "string" }}
+      {{ $.Scratch.Add "imgList" .Params.image }}
+      {{ $.Scratch.Add "imgNames" .Params.image }}
+    {{ else if eq ( printf "%T" .Params.image ) "[]interface {}" }}
+      {{ range .Params.image }}
+        {{ $.Scratch.Add "imgList" .src }}
+        {{ $.Scratch.Add "imgNames" .title }}
+      {{ end }}
+    {{ else if eq ( printf "%T" .Params.image ) "[]string" }}
+      {{ range .Params.image }}
+        {{ $.Scratch.Add "imgList" . }}
+        {{ $.Scratch.Add "imgNames" . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+    
+  <div class="pointy-container">
+    
+    <div class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--4dp">
+      {{ if gt ( len ($.Scratch.Get "imgList")) 0 }}
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+        {{ range $index, $element := ($.Scratch.Get "imgList") }}
+          <div class="mdl-card__title photo-single mdl-tabs__panel  {{ if (eq $index 0) }}is-active{{end}}" id="panel-{{$index}}" 
+                style="background:url({{ . | relURL}}) no-repeat center; background-size: contain;">    
+          </div>
+        {{ end }}
+        
+        <div class="mdl-tabs__tab-bar">
+          {{ range $index, $element := ($.Scratch.Get "imgNames") }}
+            <a href="#panel-{{$index}}" class="mdl-tabs__tab {{ if (eq $index 0) }}is-active{{end}}">{{ . }}</a>
+          {{ end }}
+        </div>
+        
+        </div>
+      {{ end }}
+      
+      <div class="mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col pointy-container">
+        <a class="mdl-color-text--grey-700" href="{{ .Permalink | relURL }}"><h3>{{ $PageTitle }}</h3></a>
+        <div class="mdl-color-text--grey-500 post-header">
+          <h6>
+            written by {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
+            {{ with .PublishDate }} on <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
+          </h6>
+        </div>
+        {{ .Content }}
+        <hr />
+        {{ if .PrevInSection }}
+        <a class="mdl-button" href="{{ .PrevInSection.Permalink }}">Previous Post</a>
+        {{ end }}
+        {{ if .NextInSection }}
+        <a class="mdl-button" href="{{ .NextInSection.Permalink }}">Next Post</a>
+        {{ end }}
+        <a class="mdl-button" href="{{ "/post/" | relURL }}">View All Posts</a>
+      </div>
+
+      
+    </div>
+    
+
+{{ end }}

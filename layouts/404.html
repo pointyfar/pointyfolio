@@ -1,0 +1,14 @@
+{{ define "base-top" }}
+<div class="mdl-layout mdl-js-layout" style="background:{{with .Site.Params.errorImage}}url('{{ . | relURL }}') no-repeat center{{else}} #727272{{end}}; background-size: cover; background-attachment:fixed;">
+{{ end }}
+
+{{ define "main" }}
+
+<div class="error-wrap mdl-typography--text-center mdl-color-text--white ">
+  <h1>Error</h1>
+  <h4>Sorry, the page seems to be missing.</h4>
+  <p>Go <a href="javascript:history.back()">back</a> or <a href="{{ .Site.BaseURL }}">home</a>.</p>
+  <br />
+</div>
+
+{{ end }}

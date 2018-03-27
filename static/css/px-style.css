@@ -79,6 +79,7 @@
 }
 
 
+
 .px-cell {
   margin: 1rem;
 }
@@ -207,6 +208,14 @@ footer .social-button {
   font-size: 20px;
 }
 
+/**
+ * Media queries and related
+ */
+
+@media all and (min-width: 0) and (max-width: 600px) {
+  .px-container { padding: 1em; }
+  .px-title { height: 100vh; }
+}
 
 
 /**

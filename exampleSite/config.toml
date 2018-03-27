@@ -2,6 +2,9 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "PointyFar"
 theme = "pointyfolio"
+
+##### Set to ../../ so you can run hugo server from exampleSite.
+##### If copying this config file, either remove themesDir or change to suit.
 themesDir = "../../"
 
 # pygmentsUseClassic = false
@@ -15,7 +18,7 @@ paginate = 4
 
 sectionPagesMenu = "main"
 
-disqusShortname = "pointyfar"
+# disqusShortname = "disqusShortname"
 
 [[menu.main]]
     name = "Blog"

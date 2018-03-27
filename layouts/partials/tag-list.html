@@ -1,0 +1,10 @@
+{{ range . }}
+
+<span class="mdl-chip">
+  <a href="/tags/{{ . | urlize}}">
+    <span class="mdl-chip__text mdl-color-text--grey-700">
+      {{ . }}
+    </span>
+  </a>
+</span>
+{{ end }}

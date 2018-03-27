@@ -3,8 +3,12 @@
     <span class="mdl-layout-title"><a class="white-text" href="{{.Site.BaseURL | relURL}}">{{.Site.Title}}</a></span>
     <div class="mdl-layout-spacer"></div>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link mdl-color-text--white" href="{{ (print "about") | relURL }}">About</a>
-      <a class="mdl-navigation__link mdl-color-text--white" href="{{ (print "post") | relURL }}">Blog</a>
+
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        <a class="mdl-navigation__link mdl-color-text--white{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      {{ end}}
+
     </nav>
   </div>
 
@@ -13,8 +17,10 @@
 <div class="mdl-layout__drawer">
     <span class="mdl-layout__title"><a class="mdl-color-text--grey-900" href="{{.Site.BaseURL | relURL}}">{{.Site.Title}}</a></span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="{{ (print "about") | relURL }}">About</a>
-      <a class="mdl-navigation__link" href="{{ (print "post") | relURL }}">Blog</a>
+      {{ range .Site.Menus.main }}
+        <a class="mdl-navigation__link {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      {{ end}}
+      
     </nav>
 </div>
   

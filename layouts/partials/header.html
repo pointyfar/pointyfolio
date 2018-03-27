@@ -2,6 +2,7 @@
 <html{{ with .Site.LanguageCode }} lang="{{ . }}"{{ end }}>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{ with  .Site.Params.swapFontawesome }}
     {{ . | safeHTML }}

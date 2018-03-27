@@ -2,24 +2,46 @@
 ---
 Pointyfolio is a Hugo theme based on [Material Design](https://getmdl.io/) and [Masonry](https://masonry.desandro.com/) and ideal for sites with lots of images to showcase.
 
+An `exampleSite` with a `config.toml` is included for reference.
+
 ## Theme Features 
+
+### Common Features 
+
+Set the appropriate values to enable the corresponding feature.
+
+```toml
+# config.toml
+disqusShortname = "disqusShortname"
+googleAnalytics = "UA-123-45"
+
+# this value used to limit number of posts displayed on index.html
+paginate = 4
+
+# as discussed in https://gohugo.io/templates/menu-templates/#section-menu-for-lazy-bloggers
+sectionPagesMenu = "main"
+
+```
 
 ### Page Bundles
 This theme uses Hugo's [page bundles](https://gohugo.io/content-management/page-bundles/#readout) feature to organise image content. See the `exampleSite` for demo. Using non-image content (e.g. `.md`) is as yet untested.
 
 ### Hero Image 
+![Hero Image](images/screenshot.png)
+
 The index page features a prominent hero image, which can be configured. If left blank, it defaults to a background color of `#424242`.
-
-### Tag filters
-Navigating to `http://example.com/tags/` shows a filterable list of tags used in posts. Checking the check box triggers the selection, while clicking on the tag name takes you to a text list of all posts with tag.
-
-An `exampleSite` with a `config.toml` is included for reference.
-
 
 ```toml
 [params]
   heroImage = "stock/mushroom.jpg"
 ```
+
+
+### Tag filters
+![Tag Filters](images/tags.png)
+
+Navigating to `http://example.com/tags/` shows a filterable list of tags used in posts. Checking the check box triggers the selection, while clicking on the tag name takes you to a text list of all posts with tag.
+
 
 ## Configuration
 
@@ -53,19 +75,23 @@ A few more options can be configured as well:
 ```
 Hugo comes with [Chroma](https://gohugo.io/content-management/syntax-highlighting/). Use the above configuration, or follow the Hugo documentation for instructions on deploying with Pygments instead. Generate the css styles into `static/chroma.css`
 
-`hugo gen chromastyles  > static/chroma.css`
+`hugo gen chromastyles  > static/css/chroma.css`
 
 ```toml
 [params.highlight]
   enableHighlight = true
   highlightCSS = "<link href=\"/css/chroma.css\" rel=\"stylesheet\">"
 ```
+![Chroma Styles](images/chroma.png)
 
 To use `highlight.js` instead, set 
 ```toml
   pygmentsUseClassic = true 
   pygmentsUseClasses = false
 ```
+
+![Highlight.JS](images/hjs.png)
+
 and, if using CDN for example: 
 ```toml
 [params.hightlight]
@@ -138,10 +164,22 @@ The theme iterates over `[[params.legal]]` to populate the legal links on the fo
   icon = "fab fa-twitter"
 ```
 
-It also iterates over `[[params.social]]` to populate the social media buttons on the right side of the footer. Fontawesome is used by default, but may be replaced by your icon set of choice. Specify the url to use in `swapFontawesome`.
+It also iterates over `[[params.social]]` to populate the social media buttons on the right side of the footer. Fontawesome is used by default, but may be replaced by your icon set of choice. Specify the css to use in `swapFontawesome`.
 
 ```toml
 [params]
     swapFontawesome = "<link href=\"http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css\" rel=\"stylesheet\">"
 ```
     
+
+## Acknowledgments
+
+Open source is awesome! Much love and thanks go to the folks behind 
+  - [Hugo](https://gohugo.io/)
+  - [Material Design](https://getmdl.io/)
+  - [Masonry](https://masonry.desandro.com/)
+  - [MathJax](https://www.mathjax.org/)
+  - [highlight.js](https://highlightjs.org)
+  
+
+Stock Photos used on the exampleSite are credited in `exampleSite/attributions.md`

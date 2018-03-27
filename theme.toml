@@ -3,11 +3,26 @@
 
 name = "Pointyfolio"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
+licenselink = "https://github.com/pointyfar/pointyfolio/blob/master/LICENSE.md"
 description = "Pointyfolio is a Hugo theme based on Material Design and Masonry and ideal for sites with lots of images to showcase."
 homepage = "https://github.com/pointyfar/pointyfolio"
-tags = ["Material", "Material Design", "Portfolio", "Blog", "Fontawesome", "Photoblog"]
-features = []
+tags = [
+  "Material", 
+  "Material Design", 
+  "Portfolio", 
+  "Blog", 
+  "Fontawesome", 
+  "Photoblog", 
+  "Google analytics", 
+  "Disqus", 
+  "Highlight.js", 
+  "Syntax highlighting"
+  ]
+features = [
+  "Google analytics", 
+  "Disqus", 
+  "Highlight.js"
+]
 min_version = "0.35"
 
 [author]

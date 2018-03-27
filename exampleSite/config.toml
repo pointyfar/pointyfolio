@@ -7,10 +7,10 @@ theme = "pointyfolio"
 ##### If copying this config file, either remove themesDir or change to suit.
 themesDir = "../../"
 
-# pygmentsUseClassic = false
-# pygmentsUseClasses = true
-pygmentsUseClassic = true
-pygmentsUseClasses = false
+pygmentsUseClassic = false
+pygmentsUseClasses = true
+# pygmentsUseClassic = true
+# pygmentsUseClasses = false
 pygmentsCodeFences = true
 pygmentsCodeFencesGuessSyntax = true
 
@@ -49,15 +49,15 @@ sectionPagesMenu = "main"
 
 [params.highlight]
   enableHighlight = true
-  #highlightCSS = "<link href=\"/css/chroma.css\" rel=\"stylesheet\">"
+  highlightCSS = "<link href=\"/css/chroma.css\" rel=\"stylesheet\">"
   
   ### To use highlight.js instead: 
   ##### uncomment below and set 
   ##### pygmentsUseClassic = true 
   ##### pygmentsUseClasses = false
   
-  highlightCSS = "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">"
-  highlightJS = "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>"
+  # highlightCSS = "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">"
+  # highlightJS = "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>"
   
 
 [params.cdn]

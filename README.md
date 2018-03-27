@@ -1,5 +1,8 @@
 # Pointyfolio 
+![Hero Image](https://github.com/pointyfar/pointyfolio/raw/master/images/screenshot.png)
+
 ---
+
 Pointyfolio is a Hugo theme based on [Material Design](https://getmdl.io/) and [Masonry](https://masonry.desandro.com/) and ideal for sites with lots of images to showcase.
 
 An `exampleSite` with a `config.toml` is included for reference.
@@ -27,7 +30,6 @@ sectionPagesMenu = "main"
 This theme uses Hugo's [page bundles](https://gohugo.io/content-management/page-bundles/#readout) feature to organise image content. See the `exampleSite` for demo. Using non-image content (e.g. `.md`) is as yet untested.
 
 ### Hero Image 
-![Hero Image](images/screenshot.png)
 
 The index page features a prominent hero image, which can be configured. If left blank, it defaults to a background color of `#424242`.
 
@@ -38,7 +40,7 @@ The index page features a prominent hero image, which can be configured. If left
 
 
 ### Tag filters
-![Tag Filters](images/tags.png)
+![Tag Filters](https://github.com/pointyfar/pointyfolio/raw/master/images/tags.png)
 
 Navigating to `http://example.com/tags/` shows a filterable list of tags used in posts. Checking the check box triggers the selection, while clicking on the tag name takes you to a text list of all posts with tag.
 
@@ -73,7 +75,7 @@ A few more options can be configured as well:
   pygmentsCodeFencesGuessSyntax = true
   pygmentsUseClasses = true
 ```
-Hugo comes with [Chroma](https://gohugo.io/content-management/syntax-highlighting/). Use the above configuration, or follow the Hugo documentation for instructions on deploying with Pygments instead. Generate the css styles into `static/chroma.css`
+Hugo comes with [Chroma](https://gohugo.io/content-management/syntax-highlighting/). Use the above configuration, or follow the Hugo documentation for instructions on deploying with Pygments instead. Generate the css styles for example into `static/css/chroma.css` and specify in `[params.highlight]`
 
 `hugo gen chromastyles  > static/css/chroma.css`
 
@@ -82,7 +84,7 @@ Hugo comes with [Chroma](https://gohugo.io/content-management/syntax-highlightin
   enableHighlight = true
   highlightCSS = "<link href=\"/css/chroma.css\" rel=\"stylesheet\">"
 ```
-![Chroma Styles](images/chroma.png)
+![Chroma Styles](https://github.com/pointyfar/pointyfolio/raw/master/images/chroma.png)
 
 To use `highlight.js` instead, set 
 ```toml
@@ -90,16 +92,16 @@ To use `highlight.js` instead, set
   pygmentsUseClasses = false
 ```
 
-![Highlight.JS](images/hjs.png)
-
-and, if using CDN for example: 
-```toml
-[params.hightlight]
-  highlightCSS = "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">"
-  highlightJS = "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>"
-```
+![Highlight.JS](https://github.com/pointyfar/pointyfolio/raw/master/images/hjs.png)
 
 Set `enableHighlight = true` and point `highlightCSS` to the relevant css file. 
+If using CDN for example: 
+
+```toml
+[params.highlight]
+highlightCSS = "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">"
+highlightJS = "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>"
+```
 
 ---
 
@@ -151,10 +153,10 @@ Note that MathJax uses a CDN. Override `partials/mathjax` if you would prefer to
   legaltext = "Terms of Use"
 ```
 
----
-
 
 The theme iterates over `[[params.legal]]` to populate the legal links on the footer. 
+
+---
 
 ### Socials
 

@@ -1,0 +1,41 @@
+{{ define "main" }}      
+{{ $currentTerm := .Data.Term }}
+<div class="px-container flex-grow">
+  <div class="section--center mdl-grid mdl-shadow--4dp">
+    <div class="mdl-cell mdl-cell--12-col ">
+    
+    {{ range $key, $taxonomy := .Site.Taxonomies.tags }}
+      {{ if eq $currentTerm $key }}
+      <h4 class="m-2">
+        {{ $tagURL := printf "tags/%s" $currentTerm | relURL }}
+        <a href="{{$tagURL}}">
+          {{$taxonomy.Count}} 
+          {{ if (gt $taxonomy.Count 1) }}Posts{{ else }}Post{{end}} Tagged 
+          <em>{{ $currentTerm }}</em>
+        </a>
+      </h4>
+      {{ end }}
+    {{ end }}
+    <ul class="mdl-list">
+
+      {{ range .Pages }}
+        
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <span>
+              <a class="mdl-color-text--grey-700" href="{{.Permalink}}">{{.Title}}</a>
+            </span>
+            <span class="mdl-list__item-sub-title">
+              {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
+              {{ with .PublishDate }} &middot; <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
+            </span>
+          </span>
+        </li>
+        
+      {{ end }}
+    </ul>
+  </div>
+    
+  </div>
+</div>
+{{ end }}

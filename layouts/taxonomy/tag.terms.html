@@ -1,0 +1,175 @@
+{{ define "main" }}      
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+
+<div class="px-container flex-grow">
+    <div class="mdl-shadow--4dp">
+      <div class="section--center mdl-grid">
+        <h4>Tags</h4>
+        <div>
+          {{ $tags := $.Site.Taxonomies.tags.ByCount }}
+          
+          {{ $v2 := where $tags "Term" "not in" (slice "tags" "rss") }}
+        
+          {{ $.Scratch.Set "untagged" 0 }}
+          {{ range $pages }}
+            {{ with .Params.tags }}{{ else }}{{ $.Scratch.Add "untagged" 1 }}{{ end }}
+          {{ end }}
+          
+          
+          <div class="px-tag-cloud-wrapper">
+            {{ range $v2 }}
+              {{ if .Term }}
+                {{ $tagURL := printf "tags/%s" .Term | relURL }}
+                <div class="px-tag-checkbox">
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="check-{{.Term}}">
+                    <input type="checkbox" id="check-{{.Term}}" class="mdl-checkbox__input" onchange="toggleTagsCheck(this,{{.Term}})">
+                    <a href="/tags/{{ .Term | urlize }}" class="mdl-color-text--grey-800">
+                      <span class="mdl-checkbox__label">{{.Term}}</span>
+                    </a>
+                    <span class="mdl-checkbox__label"> ({{.Count}})</span>
+                    
+                  </label>
+                </div>
+              {{ end }}
+            {{ end }}
+            {{ if gt ( $.Scratch.Get "untagged") 0 }}
+            <div class="px-tag-checkbox">
+              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="check-untagged">
+                <input type="checkbox" id="check-untagged" class="mdl-checkbox__input" onchange="toggleTagsCheck(this,'untagged')">
+                <a href="#" class="mdl-color-text--grey-800">
+                  <span class="mdl-checkbox__label">
+                    untagged ({{ $.Scratch.Get "untagged" }})
+                  </span>
+                </a>
+              </label>
+            </div>
+            {{ end }}
+          </div>
+          <hr >
+
+        </div>
+        
+      </div>
+      
+    
+      
+      
+      
+    <div class="grid" id="grid-container" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid-sizer", "percentPosition": true }'>
+    <div class="grid-sizer"></div>
+    {{ $paginator := .Paginate $pages  }}
+    
+    {{ range ( $pages.ByPublishDate.Reverse ) }}
+
+    <div class="grid-item hide-this {{ with .Params.tags }}{{ range . }} {{replace . " " "-" }}{{ end }}{{ else }}untagged{{ end }}">
+      <div class="mdl-shadow--2dp px-cell">
+        
+        {{ $.Scratch.Set "imgURL" "" }}
+        {{ $.Scratch.Set "imgAlt" "" }}
+        {{ $.Scratch.Set "hasImg" false }}
+        
+        {{ if isset .Params "image" }}
+        {{ $.Scratch.Set "hasImg" true }}
+          {{ if eq ( printf "%T" .Params.image ) "string" }}
+            {{ $.Scratch.Set "imgURL" .Params.image }}
+            {{ $.Scratch.Set "imgAlt" .Params.image }}
+          {{ else if eq ( printf "%T" .Params.image ) "[]interface {}" }}
+            {{ range first 1 .Params.image }}
+              {{ $.Scratch.Set "imgURL" .src }}
+              {{ $.Scratch.Set "imgAlt" .title }}
+            {{ end }}
+          {{ else if eq ( printf "%T" .Params.image ) "[]string" }}
+            {{ range .Params.image }}
+              {{ $.Scratch.Set "imgURL" . }}
+              {{ $.Scratch.Set "imgAlt" . }}
+            {{ end }}
+          {{ end }}
+        {{ else if ( gt ( len (.Resources.ByType "image")) 0 ) }}
+          {{ $.Scratch.Set "hasImg" true }}
+          {{ range first 1 (.Resources.ByType "image")  }}
+            {{ $.Scratch.Set "imgURL" .RelPermalink }}
+            {{ $.Scratch.Set "imgAlt" .Name }}
+          {{ end }}
+        {{ end }}
+        
+        
+        
+        <div class="mdl-card__title {{if $.Scratch.Get "hasImg"}} px-photo-section{{end}}" 
+            {{if $.Scratch.Get "hasImg"}} style="background:url({{ $.Scratch.Get "imgURL" | relURL }}) no-repeat center; background-size: cover;" {{ end }} >    
+          <h4 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+        </div>
+          
+          
+      </div>
+    </div>
+    
+    {{ end }}
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</div>
+<script>
+
+var tagButtons = document.getElementsByClassName('tag-button');
+
+var container = document.querySelector('#grid-container');
+var msnry = new Masonry( container, {
+  columnWidth: ".grid-sizer"
+});
+
+var selectedTags = [];
+
+function toggleTagsCheck(element, tag) {
+  
+  if( selectedTags.indexOf(tag) >= 0 ) {
+    selectedTags.splice( selectedTags.indexOf(tag), 1 );
+    element.checked = false;
+  } else {
+    selectedTags.push(tag);
+    element.checked = true;
+  }
+  
+  var tiles = document.getElementsByClassName('grid-item');
+  
+  for ( var i = 0; i < tiles.length; i++ ) {
+    if( hasTags(tiles[i].classList, selectedTags) ) {
+      if( tiles[i].classList.contains("hide-this") ){
+        tiles[i].classList.remove("hide-this");
+      } else {
+      }
+    } else {
+      tiles[i].classList.add("hide-this");
+    }
+  }
+  msnry.layout();
+  
+}
+
+
+function hasTags(tileTags, tags) {
+  for ( var j = 0; j < tags.length; j++ ) {
+    if ( tileTags.contains(tags[j]) ) {
+      return true;
+    } 
+  }
+  return false
+}
+
+
+
+</script>
+
+
+
+
+{{ end }}

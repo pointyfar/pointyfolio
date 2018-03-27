@@ -1,6 +1,7 @@
 ### Hugo ###
 hugo.exe
 /public/
+/exampleSite/public/
 
 ### Node ###
 # Logs

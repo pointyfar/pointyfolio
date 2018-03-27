@@ -1,0 +1,245 @@
+/*
+ * MDL overrides
+ */
+
+/*
+ * MDL Footer
+ */
+.mdl-mini-footer__right-section {
+  margin-right: 1rem;
+}
+ 
+/*
+ * MDL Cards
+ */
+
+.mdl-card__title-text a {
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.px-photo-section > .mdl-card__title-text,
+.px-photo-single > .mdl-card__title-text {
+  transition: background-color 0.2s ease;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 1rem;
+  width: 100%;
+}
+
+.px-photo-section > .mdl-card__title-text:hover {
+  background: rgba(0,0,0,0.75);
+}
+.px-photo-section > .mdl-card__title-text a {
+  color: #fff !important;
+}
+
+/*
+ * MDL Navigation 
+ */
+
+.mdl-layout__drawer-button {
+  color: #ccc;
+  background: rgba(33,33,33,.5);
+  border-radius: 5px;
+
+}
+
+.mdl-layout__header-row .mdl-navigation__link.mdl-navigation__link.active {
+  background: #424242;
+}
+
+.mdl-layout__drawer  .mdl-navigation__link.active {
+  background: #e0e0e0;
+}
+
+
+
+/*
+ * Structure and wrappers
+ */
+
+.px-main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height:100%;
+  min-height: calc(100vh - 175px );
+}
+
+.px-main-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.px-container {
+  padding: 3em;
+  background: white;
+}
+
+
+.px-cell {
+  margin: 1rem;
+}
+
+
+/*
+ * Hero Section
+ */
+
+.px-title {
+  padding: 3em;
+  height: 45vh;
+  min-height: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.px-title h2,
+.px-title h4 {
+  font-weight:200;
+  margin-top:0;
+  margin-bottom: 0;
+}
+
+
+/**
+ * Blog Post
+ */
+
+.px-post-header {
+  margin-bottom: 4rem;
+}
+
+
+/*
+ * Photos in post
+ */
+.px-photo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    min-height: 300px;
+    padding: 0;
+}
+
+
+.px-photo-single {
+  width: 100%;
+  height: 60vh;
+  min-height: 350px;
+  padding: 1rem;
+  
+}
+
+/**
+ * About Page
+ */
+
+img.px-about-img {
+  width: 100%;
+  height: auto;
+}
+
+
+/**
+ * Tags 
+ */
+
+.px-tag-checkbox {
+  display: inline;
+  margin: .25rem 1rem;
+}
+
+.px-tag-cloud-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+/**
+ * Masonry grid
+ */
+
+.grid {
+  background: #fff;
+}
+
+.grid-sizer, .grid-item { width: 33%; }
+
+@media all and (min-width: 0) and (max-width: 600px) {
+  .grid-sizer, .grid-item { width: 100%; }
+}
+
+@media all and (min-width: 601px) and (max-width: 840px) { 
+  .grid-sizer, .grid-item { width: 50%; }
+}
+
+
+/*
+ * Footer
+ */
+
+
+footer div.social-wrapper {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  padding: .5rem;
+  margin: .25rem;
+  text-align: center;
+  min-width: 26px;
+  
+}
+
+footer {
+  position: relative;
+  
+}
+
+footer .social-button {
+  color: white;
+  line-height: 26px;
+  font-size: 20px;
+}
+
+
+
+/**
+ * Helpers
+ */
+
+.flex-grow {
+  flex: 1 0 auto;
+}
+.error-wrap {
+  height:calc(100vh - 70px);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+#button-up {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 0;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  z-index: 900;
+}
+
+.white-text {
+  color: #fff !important;
+}
+
+.hide-this {
+  display: none;
+}

@@ -1,25 +1,19 @@
 {{ partial "header.html" . }}
 
 {{ block "base-top" . }}
-<div class="mdl-layout mdl-js-layout" style="background:url('{{ .Site.Params.homeImage | relURL }}') no-repeat center; background-size: cover; background-attachment:fixed;">
+  <div class="mdl-layout mdl-js-layout" style="background:url('{{ .Site.Params.heroImage | relURL }}') no-repeat center; background-size: cover; background-attachment:fixed;">
 {{ end }}
-        {{ partial "navbar.html" . }}
 
-        <main class="mdl-layout__content">
-          <div style="min-height:90vh;">
+{{ partial "navbar.html" . }}
 
-      
-    {{ block "main" . }}
-    {{ end }}
-    
-    
-    
-    
-  </div>
-  <div>
-    {{ partial "footer" . }}
-  </div>
-</main>
-</body>
+  <main class="mdl-layout__content px-main-wrapper" >
+    <div class="px-main-container" style="">
+      {{ block "main" . }} {{ end }}
+    </div>
+    <div class="footer-container">
+      {{ partial "footer" . }}
+    </div>
+  </main>
+  </body>
 
-</html>
+  </html>

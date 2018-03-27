@@ -1,11 +1,12 @@
 {{ define "main" }}      
-      <div class="pointy-container">
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+<div class="px-container flex-grow">
         <div class="section--center mdl-grid mdl-shadow--4dp">
-          {{ range (.Site.RegularPages.GroupByDate "2006").Reverse }}
+          {{ range ($pages.GroupByDate "2006") }}
           <div class="mdl-cell mdl-cell--12-col">
             <h4>{{ .Key }}</h4>
             <ul class="mdl-list">
-              {{ range (where .Pages "Type" "post").Reverse }}
+              {{ range .Pages }}
               <li class="mdl-list__item mdl-list__item--two-line">
                 <span class="mdl-list__item-primary-content">
                   <span>

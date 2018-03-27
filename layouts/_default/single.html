@@ -31,13 +31,13 @@
   {{ end }}
 {{ end }}
     
-  <div class="pointy-container">
+  <div class="px-container">
     
     <div class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--4dp">
       {{ if gt ( len ($.Scratch.Get "imgList")) 0 }}
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
         {{ range $index, $element := ($.Scratch.Get "imgList") }}
-          <div class="mdl-card__title photo-single mdl-tabs__panel  {{ if (eq $index 0) }}is-active{{end}}" id="panel-{{$index}}" 
+          <div class="mdl-card__title px-photo-single mdl-tabs__panel  {{ if (eq $index 0) }}is-active{{end}}" id="panel-{{$index}}" 
                 style="background:url({{ . | relURL}}) no-repeat center; background-size: contain;">    
           </div>
         {{ end }}
@@ -51,9 +51,10 @@
         </div>
       {{ end }}
       
-      <div class="mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col pointy-container">
+      <div class="mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col px-container">
+        {{ with .Params.tags }}{{ partial "tag-list.html" . }}{{ end }}
         <a class="mdl-color-text--grey-700" href="{{ .Permalink | relURL }}"><h3>{{ $PageTitle }}</h3></a>
-        <div class="mdl-color-text--grey-500 post-header">
+        <div class="mdl-color-text--grey-500 px-post-header">
           <h6>
             written by {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
             {{ with .PublishDate }} on <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
@@ -62,16 +63,25 @@
         {{ .Content }}
         <hr />
         {{ if .PrevInSection }}
-        <a class="mdl-button" href="{{ .PrevInSection.Permalink }}">Previous Post</a>
+        <a class="mdl-button" href="{{ .PrevInSection.Permalink | relURL }}">Previous Post</a>
         {{ end }}
         {{ if .NextInSection }}
-        <a class="mdl-button" href="{{ .NextInSection.Permalink }}">Next Post</a>
+        <a class="mdl-button" href="{{ .NextInSection.Permalink | relURL }}">Next Post</a>
         {{ end }}
-        <a class="mdl-button" href="{{ "/post/" | relURL }}">View All Posts</a>
+        <a class="mdl-button" href="{{ index .Site.Params.mainSections 0 | relURL }}">View All</a>
+      
+        <hr />
       </div>
 
-      
     </div>
+    
+    <div class="mdl-shadow--4dp">
+    <div class="px-container">
+      
+      {{ template "_internal/disqus.html" . }}
+    </div>
+    </div>
+    
     
 
 {{ end }}

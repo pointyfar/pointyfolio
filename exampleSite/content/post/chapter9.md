@@ -1,9 +1,13 @@
 ---
 title: "CHAPTER IX. The Mock Turtle’s Story"
-date: 2018-03-10T21:25:47+10:00
+date: 2018-03-01T21:25:47+10:00
 draft: false
 author: Mr. Turtle
 image: "stock/turtle.jpeg"
+tags: 
+  - chapter
+  - duchess 
+  - mock turtle
 ---
 
 ‘You can’t think how glad I am to see you again, you dear old thing!’

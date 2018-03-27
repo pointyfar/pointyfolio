@@ -1,8 +1,12 @@
 ---
 title: "CHAPTER I. Down the Rabbit-Hole"
-date: 2018-03-10T10:37:30+10:00
+date: 2017-03-10T10:37:30+10:00
 draft: false
 image: "stock/hole.jpeg"
+tags: 
+  - chapter
+  - rabbit 
+  - cake
 ---
 
 Alice was beginning to get very tired of sitting by her sister on the

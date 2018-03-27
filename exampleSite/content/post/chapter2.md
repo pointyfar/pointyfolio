@@ -1,8 +1,12 @@
 ---
 title: "CHAPTER II. The Pool of Tears"
-date: 2018-03-10T10:37:33+10:00
+date: 2017-04-10T10:37:33+10:00
 draft: false
 image: "stock/lake.jpeg"
+tags: 
+  - chapter
+  - rabbit 
+  - mouse
 ---
 
 ‘Curiouser and curiouser!’ cried Alice (she was so much surprised, that

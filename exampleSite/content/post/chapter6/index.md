@@ -1,7 +1,9 @@
 ---
 title: "CHAPTER VI. Pig and Pepper"
-date: 2018-03-10T11:30:54+10:00
+date: 2018-01-20T11:30:54+10:00
 draft: false
+tags: 
+  - chapter
 ---
 
 For a minute or two she stood looking at the house, and wondering what

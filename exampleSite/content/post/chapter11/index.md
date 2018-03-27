@@ -1,7 +1,9 @@
 ---
 title: "CHAPTER XI. Who Stole the Tarts?"
-date: 2018-03-10T23:07:36+10:00
+date: 2018-03-15T23:07:36+10:00
 draft: false
+tags: 
+  - chapter
 ---
 
 The King and Queen of Hearts were seated on their throne when they

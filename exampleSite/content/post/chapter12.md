@@ -1,11 +1,14 @@
 ---
 title: "CHAPTER XII. Alice’s Evidence"
-date: 2018-03-10T23:07:41+10:00
+date: 2018-03-20T23:07:41+10:00
 draft: false
 image: 
   - "stock/sitting.jpeg"
   - "stock/hole.jpeg"
-  
+tags: 
+  - chapter
+  - queen of hearts 
+  - rabbit
 ---
 
 ‘Here!’ cried Alice, quite forgetting in the flurry of the moment how

@@ -1,8 +1,12 @@
 ---
 title: "CHAPTER V. Advice from a Caterpillar"
-date: 2018-03-10T10:37:41+10:00
+date: 2018-01-10T10:37:41+10:00
 draft: false
 image: "stock/caterpillar.jpeg"
+tags: 
+  - chapter
+  - caterpillar 
+  
 ---
 
 The Caterpillar and Alice looked at each other for some time in silence:

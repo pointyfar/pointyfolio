@@ -2,21 +2,69 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "PointyFar"
 theme = "pointyfolio"
+themesDir = "../../"
 
 pygmentsUseClassic = false
+pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodeFencesGuessSyntax = true
-pygmentsUseClasses = true
 
+paginate = 4
+
+sectionPagesMenu = "main"
+
+disqusShortname = "pointyfar"
+
+[[menu.main]]
+    name = "Blog"
+    title = "Blog Section"
+    weight = 120
+    identifier = "post"
+    url = "/post/"
+
+[[menu.main]]
+    name = "Tags"
+    title = "Tags List"
+    weight = 130
+    identifier = "tags"
+    url = "/tags/"
 
 [params]
   subtitle = "Adventures in Hugoland"
   copyright = "Copyright © 2018"
   author = "Pointy Far"
-  homeImage = "stock/mushroom.jpg"
+  
+  heroImage = "stock/mushroom.jpg"
   errorImage = "stock/missing-mushroom.png"
   
   footerNotice = "Powered by Hugo. Themed by PointyFar"
+  mainSections = ["post"]
+  
+  swapFontawesome = ""
+
+[params.highlight]
+  enableHighlight = true
+  highlightCSS = "<link href=\"/css/chroma.css\" rel=\"stylesheet\">"
+  
+  ### To use highlight.js instead: 
+  ##### uncomment below and set 
+  ##### pygmentsUseClassic = true 
+  ##### pygmentsUseClasses = false
+  
+  # highlightCSS = "<link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css\">"
+  # highlightJS = "<script src=\"//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js\"></script>"
+  
+
+[params.cdn]
+  enableCDN = false 
+  listCDN = [
+    "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">",
+    "<link rel=\"stylesheet\" href=\"https://code.getmdl.io/1.3.0/material.indigo-pink.min.css\">",
+    "<script defer src=\"https://code.getmdl.io/1.3.0/material.min.js\"></script>",
+
+    "<script src=\"https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js\"></script>"
+
+  ]
 
 [[params.legal]]
   legalurl = "#"
@@ -25,6 +73,8 @@ pygmentsUseClasses = true
 [[params.legal]]
   legalurl = "#"
   legaltext = "Terms of Use"
+  
+  
   
 [[params.social]]
   url = "http://www.twitter.com"

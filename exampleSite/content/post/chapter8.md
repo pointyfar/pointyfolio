@@ -1,7 +1,12 @@
 ---
 title: "CHAPTER VIII. The Queen’s Croquet-Ground"
-date: 2018-03-10T21:23:31+10:00
+date: 2018-02-20T21:23:31+10:00
 draft: false
+tags: 
+  - chapter
+  - roses 
+  - queen of hearts
+  - cheshire cat
 ---
 
 A large rose-tree stood near the entrance of the garden: the roses

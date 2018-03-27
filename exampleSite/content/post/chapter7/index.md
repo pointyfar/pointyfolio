@@ -1,6 +1,6 @@
 ---
 title: "CHAPTER VII. A Mad Tea-Party"
-date: 2018-03-10T11:31:03+10:00
+date: 2018-02-10T11:31:03+10:00
 draft: false
 resources:
 - src: "images/tea-party.jpeg"
@@ -8,7 +8,8 @@ resources:
 - src: "images/teacup.jpeg"
   name: "tcup"
   title: "Teacup"
-
+tags: 
+  - chapter
 ---
 
 There was a table set out under a tree in front of the house, and the

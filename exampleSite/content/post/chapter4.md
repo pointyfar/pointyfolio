@@ -1,8 +1,12 @@
 ---
 title: "CHAPTER IV. The Rabbit Sends in a Little Bill"
-date: 2018-03-10T10:37:39+10:00
+date: 2017-08-10T10:37:39+10:00
 draft: false
 image: "stock/bunny.jpeg"
+tags: 
+  - chapter
+  - rabbit 
+  - cake
 ---
 
 It was the White Rabbit, trotting slowly back again, and looking

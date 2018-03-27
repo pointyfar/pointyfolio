@@ -1,8 +1,13 @@
 ---
 title: "CHAPTER III. A Caucus-Race and a Long Tale"
-date: 2018-03-10T10:37:36+10:00
+date: 2017-07-10T10:37:36+10:00
 draft: false
 image: "stock/bird-water.jpeg"
+tags: 
+  - chapter
+  - birds
+  - mouse 
+  
 ---
 
 They were indeed a queer-looking party that assembled on the bank--the

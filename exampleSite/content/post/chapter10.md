@@ -7,7 +7,9 @@ image:
     title: "seashore"
   - src: "stock/lobsters.jpeg"
     title: "lobsters"
-  
+tags: 
+  - chapter
+  - mock turtle 
 ---
 
 The Mock Turtle sighed deeply, and drew the back of one flapper across

@@ -16,10 +16,16 @@
   </div>
   <div class="mdl-mini-footer__right-section">
     {{ range .Site.Params.social }}
-    <div class="social-wrapper"><a class="social-button" href="{{.url}}"><i class="{{.icon}}"></i></a></div>
+    <div class="social-wrapper"><a class="social-button" {{with .color}}style="color:{{.}}"{{end}} href="{{.url}}"><i class="{{.icon}}"></i></a></div>
     {{ end }}
     &nbsp;
   </div>
 </footer>  
 
-{{ partial "mathjax.html" . }}
+{{ if .Params.hasMath }}
+  {{ partial "mathjax.html" . }}
+{{ end }}
+
+{{ if .Params.hasMermaid }}
+  {{ partial "mermaid.html" . }}
+{{ end }}

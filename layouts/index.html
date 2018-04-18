@@ -81,13 +81,31 @@
   
   {{ end }}
   
+  {{ $.Scratch.Set "listAll" false }}
+  {{ with .Site.Params.listAll }}
+    {{ if . }}{{ $.Scratch.Set "listAll" true }}{{ end }}
+  {{ end }}
+  
+  {{ if ( $.Scratch.Get "listAll" ) }}
   <div class="grid-item">
     <div class="mdl-shadow--2dp px-cell">
       <div class="mdl-card__title" >    
-          <h3 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ index .Site.Params.mainSections 0 | relURL }}">View All</a></h3>
+          <h3 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ "/all" | relURL }}">View All</a></h3>
       </div>
     </div>
   </div>
+  {{ else }}
+  {{ range .Site.Params.mainSections }}
+  <div class="grid-item">
+    <div class="mdl-shadow--2dp px-cell">
+      <div class="mdl-card__title" >    
+          <h3 class="mdl-card__title-text"><a class="mdl-card__title-text" href="{{ . | relURL }}">View All {{. | pluralize | title }}</a></h3>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+  
   </div>
 </div>
   

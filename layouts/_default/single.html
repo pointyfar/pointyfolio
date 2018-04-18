@@ -6,7 +6,13 @@
 {{ $.Scratch.Set "imgList" (slice ) }}
 {{ $.Scratch.Set "imgNames" (slice ) }}
 
-{{ if gt ( len (.Resources.ByType "image")) 0  | or (isset .Params "image") }}
+{{ $.Scratch.Set "showGallery" true }}
+
+{{ with .Params.hideGallery }}
+  {{ if . }}{{ $.Scratch.Set "showGallery" false }}{{ end }}
+{{ end }}
+
+{{ if ( and ( $.Scratch.Get "showGallery" ) ( gt ( len (.Resources.ByType "image")) 0  | or (isset .Params "image") ) ) }}
   {{ if gt ( len (.Resources.ByType "image")) 0 }}
     {{ range (.Resources.ByType "image")  }}
       {{ $.Scratch.Add "imgList" .RelPermalink }}
@@ -53,7 +59,7 @@
       
       <div class="mdl-color--white content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col px-container">
         {{ with .Params.tags }}{{ partial "tag-list.html" . }}{{ end }}
-        <a class="mdl-color-text--grey-700" href="{{ .Permalink | relURL }}"><h3>{{ $PageTitle }}</h3></a>
+        <a class="mdl-color-text--grey-700" href="{{ .Permalink | relURL }}"><h2>{{ $PageTitle }}</h2></a>
         <div class="mdl-color-text--grey-500 px-post-header">
           <h6>
             written by {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
@@ -63,12 +69,12 @@
         {{ .Content }}
         <hr />
         {{ if .PrevInSection }}
-        <a class="mdl-button" href="{{ .PrevInSection.Permalink | relURL }}">Previous Post</a>
+        <a class="mdl-button" href="{{ .PrevInSection.Permalink | relURL }}">Previous {{ .Section }}</a>
         {{ end }}
         {{ if .NextInSection }}
-        <a class="mdl-button" href="{{ .NextInSection.Permalink | relURL }}">Next Post</a>
+        <a class="mdl-button" href="{{ .NextInSection.Permalink | relURL }}">Next {{ .Section }}</a>
         {{ end }}
-        <a class="mdl-button" href="{{ index .Site.Params.mainSections 0 | relURL }}">View All</a>
+        <a class="mdl-button" href="{{ .Section | relURL }}">View All {{ .Section | pluralize | title }}</a>
       
         <hr />
       </div>

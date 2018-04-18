@@ -1,14 +1,7 @@
 {{ define "main" }}      
-
-
-{{ $pages := where .Site.RegularPages "Type" "in" .Section }}
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
 <div class="px-container flex-grow">
   <div class="section--center mdl-grid mdl-shadow--4dp">
-    <div class="mdl-cell mdl-cell--12-col">
-      <a class="mdl-color-text--grey-700" href="{{ .Permalink | relURL }}">
-        <h2>{{ .Section | title }}</h2>
-      </a>
-    </div>
     {{ range ($pages.GroupByDate "2006") }}
     <div class="mdl-cell mdl-cell--12-col">
       <h4>{{ .Key }}</h4>
@@ -22,6 +15,7 @@
             <span class="mdl-list__item-sub-title">
               {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
               {{ with .PublishDate }} &middot; <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
+              &middot; {{ .Section }}
             </span>
           </span>
         </li>

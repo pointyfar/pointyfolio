@@ -1,0 +1,26 @@
+{{ $page := .Page }}
+
+{{ $.Scratch.Set "alt" ""}}
+{{ with .Get "alt" }}
+{{ $.Scratch.Set "alt" . }}
+{{ end }}
+
+
+<div class="mdl-shadow--2dp px-cell">
+{{ with .Get "resource" }}
+
+{{ $rimg := $page.Resources.GetMatch . }}
+  <div class="mdl-card__title px-photo-section" style="background:url('{{ $rimg.RelPermalink }}') no-repeat center; background-size: contain;" >    
+  </div>
+{{ end }}
+
+{{ with .Get "src" }}
+  <div class="mdl-card__title px-photo-section" style="background:url('{{ . }}') no-repeat center; background-size: contain;" >    
+  </div>
+{{ end }}
+
+  <div class="mdl-card__supporting-text">
+    <h4 class="mdl-card__title-text">{{$.Scratch.Get "alt" }}</h4>
+  </div>
+</div>
+

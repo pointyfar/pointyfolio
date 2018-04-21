@@ -186,8 +186,8 @@ img.px-about-img {
   display: none;
 }
 
-.show-item {
-  display: inline-block;
+.grid-item.px-filter-item.show-item {
+  display: inline-block!important;
 }
 
 .px-tag-cloud-wrapper > button {

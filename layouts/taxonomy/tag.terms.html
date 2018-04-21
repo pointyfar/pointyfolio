@@ -15,34 +15,27 @@
             {{ with .Params.tags }}{{ else }}{{ $.Scratch.Add "untagged" 1 }}{{ end }}
           {{ end }}
           
-          
+          <style>
+          button.active {
+            color: red!important;
+          }
+          </style>
           <div class="px-tag-cloud-wrapper">
+            <button class="mdl-button mdl-button--raised mdl-js-button " id="pxtagSelectAllTags" onclick="htf.showAll('tag'); msnry.layout();">
+              All Tags
+            </button>
             {{ range $v2 }}
               {{ if .Term }}
-                {{ $tagURL := printf "tags/%s" .Term | relURL }}
-                <div class="px-tag-checkbox">
-                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="check-{{.Term}}">
-                    <input type="checkbox" id="check-{{.Term}}" class="mdl-checkbox__input" onchange="toggleTagsCheck(this,{{.Term}})">
-                    <a href="/tags/{{ .Term | urlize }}" class="mdl-color-text--grey-800">
-                      <span class="mdl-checkbox__label">{{.Term}}</span>
-                    </a>
-                    <span class="mdl-checkbox__label"> ({{.Count}})</span>
-                    
-                  </label>
-                </div>
+                <button class="mdl-button mdl-button--raised mdl-js-button pxtag-button" id="pxtag-{{.Term | urlize}}" onclick="htf.checkFilter('{{.Term | urlize}}', 'pxtag-'); msnry.layout();">
+                  <span>{{.Term | humanize | title }}</span>
+                  <span> ({{.Count}})</span>
+                </button>
               {{ end }}
             {{ end }}
             {{ if gt ( $.Scratch.Get "untagged") 0 }}
-            <div class="px-tag-checkbox">
-              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="check-untagged">
-                <input type="checkbox" id="check-untagged" class="mdl-checkbox__input" onchange="toggleTagsCheck(this,'untagged')">
-                <a href="#" class="mdl-color-text--grey-800">
-                  <span class="mdl-checkbox__label">
-                    untagged ({{ $.Scratch.Get "untagged" }})
-                  </span>
-                </a>
-              </label>
-            </div>
+            <button class="mdl-button mdl-button--raised mdl-js-button " id="pxtag-tfuntagged" onclick="htf.checkFilter('tfuntagged', 'pxtag-'); msnry.layout();">
+              Untagged ({{ $.Scratch.Get "untagged" }})
+            </button>
             {{ end }}
           </div>
           <hr >
@@ -61,7 +54,9 @@
     
     {{ range ( $pages.ByPublishDate.Reverse ) }}
 
-    <div class="grid-item hide-this {{ with .Params.tags }}{{ range . }} {{replace . " " "-" }}{{ end }}{{ else }}untagged{{ end }}">
+    <div class="grid-item px-filter-item px-item" 
+          data-tags="{{ with .Params.tags }}{{ range . }}{{ . | urlize }} {{ end }}{{ else }} tfuntagged{{ end }}"
+          data-section="{{ .Section }}">
       <div class="mdl-shadow--2dp px-cell">
         
         {{ $.Scratch.Set "imgURL" "" }}
@@ -118,54 +113,31 @@
     
   </div>
 </div>
+
+<script src="{{ "js/vendor/htf/hugotagsfilter.dist.js" | relURL}}"></script>
 <script>
 
-var tagButtons = document.getElementsByClassName('tag-button');
+var htfConfig = {
+  filters: [{
+    name: 'tag',
+    prefix: 'pxtag-',
+    buttonClass: 'pxtag-button',
+    allSelector: '#pxtagSelectAllTags',
+    attrName: 'data-tags'
+  }],
+  showItemClass: "show-item",
+  filterItemClass: "grid-item",
+  activeButtonClass: "mdl-button--colored"
+} 
+
+var htf = new HugoTagsFilter(htfConfig);
+
 
 var container = document.querySelector('#grid-container');
+
 var msnry = new Masonry( container, {
   columnWidth: ".grid-sizer"
 });
-
-var selectedTags = [];
-
-function toggleTagsCheck(element, tag) {
-  
-  if( selectedTags.indexOf(tag) >= 0 ) {
-    selectedTags.splice( selectedTags.indexOf(tag), 1 );
-    element.checked = false;
-  } else {
-    selectedTags.push(tag);
-    element.checked = true;
-  }
-  
-  var tiles = document.getElementsByClassName('grid-item');
-  
-  for ( var i = 0; i < tiles.length; i++ ) {
-    if( hasTags(tiles[i].classList, selectedTags) ) {
-      if( tiles[i].classList.contains("hide-this") ){
-        tiles[i].classList.remove("hide-this");
-      } else {
-      }
-    } else {
-      tiles[i].classList.add("hide-this");
-    }
-  }
-  msnry.layout();
-  
-}
-
-
-function hasTags(tileTags, tags) {
-  for ( var j = 0; j < tags.length; j++ ) {
-    if ( tileTags.contains(tags[j]) ) {
-      return true;
-    } 
-  }
-  return false
-}
-
-
 
 </script>
 

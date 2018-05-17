@@ -8,32 +8,29 @@
         <div>
           {{ $tags := $.Site.Taxonomies.tags.ByCount }}
           
-          {{ $v2 := where $tags "Term" "not in" (slice "tags" "rss") }}
-        
           {{ $.Scratch.Set "untagged" 0 }}
           {{ range $pages }}
             {{ with .Params.tags }}{{ else }}{{ $.Scratch.Add "untagged" 1 }}{{ end }}
           {{ end }}
           
-          <style>
-          button.active {
-            color: red!important;
-          }
-          </style>
           <div class="px-tag-cloud-wrapper">
             <button class="mdl-button mdl-button--raised mdl-js-button " id="pxtagSelectAllTags" onclick="htf.showAll('tag'); msnry.layout();">
               All Tags
             </button>
-            {{ range $v2 }}
+            {{ range $tags }}
               {{ if .Term }}
-                <button class="mdl-button mdl-button--raised mdl-js-button pxtag-button" id="pxtag-{{.Term | urlize}}" onclick="htf.checkFilter('{{.Term | urlize}}', 'pxtag-'); msnry.layout();">
+                <button class="mdl-button mdl-button--raised mdl-js-button pxtag-button" 
+                        id="pxtag-{{.Term | urlize}}" 
+                        onclick="htf.checkFilter('{{.Term | urlize}}', 'pxtag-'); msnry.layout();">
                   <span>{{.Term | humanize | title }}</span>
                   <span> ({{.Count}})</span>
                 </button>
               {{ end }}
             {{ end }}
             {{ if gt ( $.Scratch.Get "untagged") 0 }}
-            <button class="mdl-button mdl-button--raised mdl-js-button " id="pxtag-tfuntagged" onclick="htf.checkFilter('tfuntagged', 'pxtag-'); msnry.layout();">
+            <button class="mdl-button mdl-button--raised mdl-js-button pxtag-button" 
+                    id="pxtag-tfuntagged" 
+                    onclick="htf.checkFilter('tfuntagged', 'pxtag-'); msnry.layout();">
               Untagged ({{ $.Scratch.Get "untagged" }})
             </button>
             {{ end }}
@@ -114,22 +111,28 @@
   </div>
 </div>
 
-<script src="{{ "vendor/htf/hugotagsfilter.dist.js" | relURL}}"></script>
+<script src="{{ "vendor/htf/hugotagsfilter-1.2.2.min.js" | relURL}}"></script>
 <script>
 
 var htfConfig = {
-  filters: [{
-    name: 'tag',
-    prefix: 'pxtag-',
-    buttonClass: 'pxtag-button',
-    allSelector: '#pxtagSelectAllTags',
-    attrName: 'data-tags'
-  }],
+  filters: [
+    {
+      name: 'tags',
+      prefix: 'pxtag-',
+      buttonClass: 'pxtag-button',
+      allSelector: '#pxtagSelectAllTags',
+      attrName: 'data-tags',
+      selectedPrefix: 'stags-',
+      countPrefix: 'ctags-'
+    }
+  ],
   showItemClass: "show-item",
   filterItemClass: "grid-item",
-  activeButtonClass: "mdl-button--colored"
+  activeButtonClass: "mdl-button--colored",
+  counterSelector: "selectedItemCount",
+  populateCount: false,
+  setDisabledButtonClass: "disable-button"
 } 
-
 var htf = new HugoTagsFilter(htfConfig);
 
 
